@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import './register.css';
 
 const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -31,8 +32,6 @@ function Register() {
             validationSchema={SignupSchema}
             onSubmit={async values => {
                 const url = `${process.env.REACT_APP_API_URL}/user/register`
-                console.log('crb_here')
-                console.log(url)
                 try{
                     await fetch(url, {
                         body: JSON.stringify(values),

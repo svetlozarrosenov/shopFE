@@ -5,11 +5,28 @@ function Login() {
         <div>
             <Formik 
                 initialValues={{ email: '', password: '' }}
-                onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                    }, 400);
+                onSubmit={async values => {
+                    try{
+                        const url = `${process.env.REACT_APP_API_URL}/auth/login`
+
+                        await fetch(url, {
+                            body: JSON.stringify(values),
+                            headers: {
+                            'Content-Type': 'application/json'
+                            },
+                            method: 'POST',
+                            mode: 'cors'
+                        })
+                        .then((data)=>{
+                            console.log('crb_here')
+                            console.log(data)
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                    }catch(error: any){
+                        throw new error;
+                    }
                 }}>
             
                 {({ isSubmitting }) => (

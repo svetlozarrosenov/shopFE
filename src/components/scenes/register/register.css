@@ -1,0 +1,2 @@
+form button { background-color: yellow; color: red; font-size: 30px; border-radius: 40px; cursor: pointer; transition: .5s; }
+form button:hover { background-color: aquamarine; }
